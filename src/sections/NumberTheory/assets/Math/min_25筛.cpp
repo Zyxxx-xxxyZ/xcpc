@@ -1,9 +1,14 @@
 typedef long long ll;
 
-ll n;
+ll n, sn;
 ll pri[N], sta[M], g[M]; int tot, mod;
+ll isqrt_ll(ll x) {
+	ll s = (ll)sqrt((double)x);
+	while (s && (__int128)s * s > x) --s;
+	while ((__int128)(s + 1) * (s + 1) <= x) ++s;
+	return s; }
 int getid(ll x) {
-	if(x <= sqrt(n)) return x;
+	if(x <= sn) return x;
 	return tot + 1 - (n / x);
 }
 
@@ -22,6 +27,7 @@ int solve(ll n, int id) {
 }
 
 void init(){
+	sn = isqrt_ll(n);
 	for(int i=1; i<=pri[0]; i++)
 		for(int j=tot; j>=1; j--){
 			if(sta[j] / pri[i] < pri[i]) break;

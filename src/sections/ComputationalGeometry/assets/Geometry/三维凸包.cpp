@@ -17,24 +17,33 @@ struct ConvexHull3D {
 		p=move(points), face.clear();
 		if (p.size()<4) return false;
 		shuffle(p.begin(),p.end(),rnd);
-		int n=(int)p.size(),b=1,c=-1,d=-1;
-		for (int i=2;i<n;++i) if (cross(p[b]-p[0],p[i]-p[0]).len()>eps) {c=i;break;}
-		if (c<0) return false;
-		swap(p[2],p[c]);
-		for (int i=3;i<n;++i) if (fabsl(mix(p[1]-p[0],p[2]-p[0],p[i]-p[0]))>eps) {d=i;break;}
-		if (d<0) return false;
-		swap(p[3],p[d]);
+		int n=(int)p.size(), a=0, b=0, c=0, d=0;
+		for (int i=1;i<n;++i) if ((p[i]-p[a]).len2()>(p[b]-p[a]).len2()) b=i;
+		for (int i=0;i<n;++i) if ((p[i]-p[b]).len2()>(p[a]-p[b]).len2()) a=i;
+		LD bc=-1;
+		for (int i=0;i<n;++i) { LD t=cross(p[b]-p[a],p[i]-p[a]).len(); if (t>bc) bc=t, c=i; }
+		if (bc<=eps) return false;
+		LD bd=-1;
+		for (int i=0;i<n;++i) { LD t=fabsl(mix(p[b]-p[a],p[c]-p[a],p[i]-p[a])); if (t>bd) bd=t, d=i; }
+		if (bd<=eps) return false;
+		vector<p3> q{p[a],p[b],p[c],p[d]};
+		for (int i=0;i<n;++i) if (i!=a && i!=b && i!=c && i!=d) q.push_back(p[i]);
+		p.swap(q);
 		face={outward(0,1,2,3),outward(0,3,1,2),
 			outward(0,2,3,1),outward(1,3,2,0)};
 		for (int x=4;x<n;++x) {
+			bool out=0;
+			for (Face f:face) if (sgn(volume(f,x))>0) { out=1; break; }
+			if (!out) continue; // inside or in the interior of a face
 			set<pair<int,int>> horizon;
 			vector<Face> keep;
-			for (Face f:face) if (sgn(volume(f,x))>0) {
+			for (Face f:face) if (sgn(volume(f,x))>=0) {
 				for (int k=0;k<3;++k) {
 					pair<int,int> e={f[k],f[(k+1)%3]},rev={e.second,e.first};
 					if (horizon.count(rev)) horizon.erase(rev); else horizon.insert(e);
 				}
 			} else keep.push_back(f);
+			if (horizon.empty()) continue;
 			for (auto [u,v]:horizon) keep.push_back({u,v,x});
 			face.swap(keep);
 		}

@@ -1,7 +1,7 @@
 typedef vector <LD> vec; /* sum a[i][0..d] = 0 */
 pair<vec,vector<vec>> gauss(vector<vec> &a, int n, int d) {
-	vector <int> pivot(d, -1);
-	for (int i = 0, o = 0; i < d; i++) {
+	vector <int> pivot(d, -1); int o = 0;
+	for (int i = 0; i < d; i++) {
 		int j = o; while (j < n && abs(a[j][i]) < eps) j++;
 		if (j == n) continue;
 		swap(a[j], a[o]); LD w = a[o][i];
@@ -12,7 +12,10 @@ pair<vec,vector<vec>> gauss(vector<vec> &a, int n, int d) {
 				for (int k = 0; k <= d; k++)
 					a[x][k] -= a[o][k] * w;   }
 		pivot[i] = o++;
-	} vec x0(d); vector <vec> t; int free = 0;
+	}
+	for (int i = o; i < n; i++) if (abs(a[i][d]) > eps)
+		return {{}, {}}; // inconsistent
+	vec x0(d); vector <vec> t; int free = 0;
 	for (int i = 0; i < d; i++) 
 		if (pivot[i] != -1) x0[i] = -a[pivot[i]][d];
 		else free ++;

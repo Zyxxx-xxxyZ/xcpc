@@ -21,6 +21,8 @@ int contract(int &s, int &t) {  // Find s,t
 const int inf = 0x3f3f3f3f;
 int solve() {
 	int mincut, i, j, s, t, ans;
+	if (n <= 1) return 0;
+	memset(bin, 0, sizeof bin);
 	for (mincut = inf, i = 1; i < n; i++) {
 		ans = contract(s, t);
 		bin[t] = true;

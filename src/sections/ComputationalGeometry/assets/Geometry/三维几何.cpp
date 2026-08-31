@@ -31,8 +31,8 @@ void rotation_matrix(p3 axis, LD angle) {
 		int j = (i + 1) % 3, k = (i + 2) % 3;
 		LD x = axis[i], y = axis[j], z = axis[k];
 		rotation[i][i] = (y*y + z*z)*c + x*x;
-		rotation[i][j] = x*y*(1-c) + z*s;
-		rotation[i][k] = x*z*(1-c) - y*s;
+		rotation[i][j] = x*y*(1-c) - z*s;
+		rotation[i][k] = x*z*(1-c) + y*s;
 	}
 }
 

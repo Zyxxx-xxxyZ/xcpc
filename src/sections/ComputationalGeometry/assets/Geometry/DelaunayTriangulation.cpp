@@ -53,9 +53,11 @@ class Triangulation {
 		static TriRef find(TriRef root,cp p){
 			for( ; ; ) {
 				if (!root->has_ch()) return root;
-				else for (int i = 0; i < 3 && root->ch[i] ; ++i)
-						if (root->ch[i]->contains(p))
-							{root = root->ch[i]; break;} } }
+				TriRef nxt = 0;
+				for (int i = 0; i < 3 && root->ch[i] ; ++i)
+					if (root->ch[i]->contains(p))
+						{ nxt = root->ch[i]; break; }
+				root = nxt ? nxt : root->ch[0]; } }
 		void add_point(TriRef root, cp p) {
 			TriRef tab,tbc,tca;
 			tab = new(tot_tri++) Tri(root->p[0], root->p[1], p);

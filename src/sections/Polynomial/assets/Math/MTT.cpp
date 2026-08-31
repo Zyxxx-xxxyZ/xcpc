@@ -16,27 +16,29 @@ vector<int> multiply(const vector<int>& u,
 	int base = ceil(sqrt(mod));
 	int n = (int)u.size(), m = (int)v.size();
 	int fft_n = 1; while (fft_n < n + m - 1) fft_n *= 2;
+	fft_init(fft_n);
 	for (int i = 0; i < 2; i++) {
 		fill(a[i], a[i] + fft_n, 0);
 		fill(b[i], b[i] + fft_n, 0); }
 	for (int i = 0; i < 3; i++)
 		fill(c[i], c[i] + fft_n, 0);
 	for (int i = 0; i < n; i++) { // 一定要取模！
-		a[0][i] = (u[i] % mod) % base;
-		a[1][i] = (u[i] % mod) / base; }
-	for (int i = 0; i < m; i++) { // 一定要取模！
-		b[0][i] = (v[i] % mod) % base;
-		b[1][i] = (v[i] % mod) / base; }
+		int x = (u[i] % mod + mod) % mod;
+		a[0][i] = x % base; a[1][i] = x / base; }
+	for (int i = 0; i < m; i++) {
+		int x = (v[i] % mod + mod) % mod;
+		b[0][i] = x % base; b[1][i] = x / base; }
 	dft(a[0], a[1], fft_n); dft(b[0], b[1], fft_n);
 	for (int i = 0; i < fft_n; i++) {
 		c[0][i] = a[0][i] * b[0][i];
 		c[1][i] = a[0][i] * b[1][i] + a[1][i] * b[0][i];
 		c[2][i] = a[1][i] * b[1][i]; }
 	fft(c[1], fft_n, -1); idft(c[0], c[2], fft_n);
-	int base2 = base * base % mod;
+	int base2 = (int)((LL)base * base % mod);
 	vector<int> ans(n + m - 1);
-	for (int i = 0; i < n + m - 1; i++)
-		ans[i] = ((LL)(c[0][i].real() + 0.5) +
-			(LL)(c[1][i].real() + 0.5) % mod * base +
-			(LL)(c[2][i].real() + 0.5) % mod * base2) % mod;
+	for (int i = 0; i < n + m - 1; i++) {
+		LL t = (LL)(c[0][i].real() + 0.5)
+			+ (LL)(c[1][i].real() + 0.5) % mod * base
+			+ (LL)(c[2][i].real() + 0.5) % mod * base2;
+		ans[i] = (int)((t % mod + mod) % mod); }
 	return ans; }

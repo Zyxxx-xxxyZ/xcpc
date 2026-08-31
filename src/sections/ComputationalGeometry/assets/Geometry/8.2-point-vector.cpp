@@ -22,7 +22,7 @@ struct P {
 	void print() const { printf("(%.9Lf,%.9Lf)", x, y); }
 };
 
-bool operator<(cp a, cp b) { return a.x == b.x ? a.y < b.y : a.x < b.x; }
+bool operator<(cp a, cp b) { return a.x == b.x ? a.y < b.y : a.x < b.x; } // 序关系用精确比较, eps 只用于 == / 转向等谓词
 bool operator>(cp a, cp b) { return b < a; }
 bool operator==(cp a, cp b) { return !sgn(a.x - b.x) && !sgn(a.y - b.y); }
 bool operator!=(cp a, cp b) { return !(a == b); }

@@ -3,4 +3,6 @@ LL exgcd(LL a, LL b, LL &x, LL &y) {
 	LL t = exgcd(b, a % b, y, x);
 	y -= a / b * x; return t;}
 LL inv(LL x, LL m) {
-	LL a, b; exgcd(x, m, a, b); return (a % m + m) % m; }
+	LL a, b; LL g = exgcd(x, m, a, b);
+	assert(g == 1 || g == -1);
+	return (a % m + m) % m; }

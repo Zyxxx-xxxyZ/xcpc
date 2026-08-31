@@ -1,11 +1,12 @@
 struct AC{
-int ch[N][26], fail[N], tag[N], tot;
+int ch[N][26], fail[N], tot;
+vector<int> tag[N];
 void ins(string s, int _idx){
 	int x = 0;
 	for(auto c : s){
 		int v = c - 'a';
 		if(!ch[x][v]) ch[x][v] = ++tot;
-		x = ch[x][v]; } tag[x] = _idx; }
+		x = ch[x][v]; } tag[x].push_back(_idx); }
 void build(){
 	queue<int> q;
 	for(int i=0;i<26;i++) if(ch[0][i]) q.push(ch[0][i]);

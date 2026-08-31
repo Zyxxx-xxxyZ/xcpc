@@ -1,16 +1,14 @@
-LL modmul(LL a, LL b, LL M) { // skip2004, M < 63bit
-	LL ret = a * b - M * LL(1.L * a / M * b + 0.5);
+LL modmul(LL a, LL b, LL M) { // M in (0, 2^63)
+	LL ret = (LL)((__int128)a * b % M);
 	return ret < 0 ? ret + M : ret; }
-ULL modmul(ULL a, ULL b, LL M) { // orz@CF, M in 63 bit
-	ULL c = (long double)a * b / M;
-	LL ret = LL(a * b - c * M) % LL(M); // must be signed
-	return ret < 0 ? ret + M : ret; }
-// use int128 instead if M > 63 bit
+ULL modmul(ULL a, ULL b, LL M) {
+	ULL m = (ULL)M;
+	return (ULL)((unsigned __int128)a * b % m); }
 struct DIV { 
 	ULL p, ip;
 	void init (ULL _p) { p = _p; ip = -1llu / p; }
-	int mod (ULL x) { // x < 2 ^ 64
+	ULL mod (ULL x) { // x < 2 ^ 64, residue in [0, p)
 		ULL q = ULL(((u128)ip * x) >> 64);
 		ULL r = x - q * p;
-		return int(r >= p ? r - p : r);
+		return r >= p ? r - p : r;
 } }; // speedup only when mod is not const

@@ -1,6 +1,7 @@
 bool cmp(int x, int y) {return id[x] < id[y];}
 void build(vector<int> v){
 	sort(v.begin(), v.end(), cmp);
+	v.erase(unique(v.begin(), v.end()), v.end());
 	int top = 0;
 	s[top=1] = 1; vt::e[1].clear();
 	for(auto x : v){

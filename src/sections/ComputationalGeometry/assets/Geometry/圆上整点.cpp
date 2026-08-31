@@ -14,4 +14,4 @@ vector <LL> solve(LL r) {
 			LL b = sqrt(d - a * a);
 			if (a*a+b*b==d && __gcd(a,b)==1 && a!=b)
 				ret.push_back(l/d*a*b);
-	} } return ret; } 
+	} } ret.push_back(r); return ret; } 

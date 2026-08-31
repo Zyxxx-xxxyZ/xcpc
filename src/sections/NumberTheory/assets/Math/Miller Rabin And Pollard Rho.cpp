@@ -1,7 +1,6 @@
 mt19937_64 rng(123);
 #define rand() (LL)(rng() & LLONG_MAX)
-const LL BASE[] = {2, 7, 61};//int(7,3e9)
-//{2,325,9375,28178,450775,9780504,1795265022}LL(37)
+const LL BASE[] = {2,325,9375,28178,450775,9780504,1795265022};// deterministic for 64-bit
 struct miller_rabin {
 bool check (LL M, LL base) {
 	LL a = M - 1;
@@ -10,12 +9,12 @@ bool check (LL M, LL base) {
 	for (; a != M - 1 && w != 1 && w != M - 1; a <<= 1)
 		w = mul (w, w, M);
 	return w == M - 1 || (a & 1) == 1; }
-bool solve (LL a) {//$O((3 \text{ or } 7) \cdot \log n \cdot \mathrm{mul})$
+bool solve (LL a) {//$O(7 \cdot \log n \cdot \mathrm{mul})$
 	if (a < 4) return a > 1;
 	if (~a & 1) return false;
-	for (int i = 0; i < sizeof(BASE)/sizeof(BASE[0]); ++i) {
+	for (int i = 0; i < (int)(sizeof(BASE)/sizeof(BASE[0])); ++i) {
         LL chk = BASE[i] % a;
-        if (chk == 0) return true;
+        if (chk == 0) continue; // n | BASE[i]: skip, do not accept
 		if (!check (a, chk)) return false;
     }
 	return true; } };

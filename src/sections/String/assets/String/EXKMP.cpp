@@ -1,6 +1,6 @@
 void init(){
 	int l = 0, r = 0;
-	z[1] = 0;
+	z[1] = n;
 	for(int i=2;i<=n;i++){
 		if(i <= r && z[i-l+1] < r-i+1) z[i] = z[i-l+1];
 		else {

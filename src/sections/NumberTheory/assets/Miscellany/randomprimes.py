@@ -3,14 +3,23 @@ import sys
 BASE = [2,325,9375,28178,450775,9780504,1795265022]
 
 def check(M, base):
+	base %= M
+	if base == 0:
+		return True
 	a = M - 1
+	s = 0
 	while not a & 1:
 		a >>= 1
+		s += 1
 	w = pow(base, a, M)
-	for _ in range(a, M - 1, a):
-		if w == 1 or w == M - 1:
-			return True
+	if w == 1 or w == M - 1:
+		return True
+	for _ in range(s - 1):
 		w = pow(w, 2, M)
+		if w == M - 1:
+			return True
+		if w == 1:
+			return False
 	return False
 
 def isprime(a):
@@ -24,6 +33,7 @@ def isprime(a):
 	return True
 
 import random,datetime,time
+random.seed(0)
 
 if len(sys.argv) < 2:
 	print("Usage: python script.py <n> [seed]")
