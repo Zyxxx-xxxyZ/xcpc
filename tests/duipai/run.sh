@@ -9,7 +9,7 @@ fi
 mkdir -p build
 fail=0
 shopt -s nullglob
-for src in dp_*.cpp; do
+for src in dp_*.cpp geo_*.cpp; do
   name="${src%.cpp}"
   echo "COMPILE $name"
   if ! "$CXX" -O2 -std=c++17 -pipe "$src" -o "build/$name"; then
