@@ -33,11 +33,12 @@ int rk(int v){
 	int x, y; splitVal(rt, v-1, x, y);
 	int t = siz[x] + 1; rt = merge(x, y); return t; }
 int kth(int p, int k){
-	if(!p) return 0;
-	while(true){
+	if(!p || k <= 0) return 0;
+	while(p){
 		if(siz[ls[p]] >= k) p = ls[p];
 		else if(siz[ls[p]] + 1 == k) return val[p];
-		else k -= siz[ls[p]] + 1, p = rs[p]; } }
+		else k -= siz[ls[p]] + 1, p = rs[p]; }
+	return 0; }
 int pre(int v){
 	int x, y; splitVal(rt, v-1, x, y);
 	int t = kth(x, siz[x]); rt = merge(x, y); return t; }

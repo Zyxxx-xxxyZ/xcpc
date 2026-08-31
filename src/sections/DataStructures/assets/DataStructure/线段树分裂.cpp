@@ -1,4 +1,5 @@
 void split(int& x, int& y, int nl, int nr, int l, int r){
+	if(!x) { y = 0; return; }
 	if(nl <= l && r <= nr) {y = x, x = 0; return;}
 	y = new_node();
 	int mid = (l+r)>>1;

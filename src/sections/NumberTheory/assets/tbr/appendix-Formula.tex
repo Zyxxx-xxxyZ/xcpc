@@ -9,7 +9,7 @@
 \subsubsection{Mobius Inversion}
 	\[F(n)=\sum_{d|n}f(d)\Rightarrow f(n)=\sum_{d|n}\mu(d)F\left(\frac{n}{d}\right)\]
 	\[F(n)=\sum_{n|d}f(d)\Rightarrow f(n)=\sum_{n|d}\mu\left(\frac{d}{n}\right)F(d)\]
-	\[[x = 1] = \sum_{d|x}\mu(d),\ \ x = \sum_{d|x}\mu(d)\]
+	\[[x = 1] = \sum_{d|x}\mu(d),\ \ n = \sum_{d|n}\varphi(d)\]
 \subsubsection{杜教筛}
 	\input{sections/NumberTheory/assets/Math/杜教筛.tex}
 \subsubsection{降幂公式}
@@ -50,7 +50,7 @@ $J_k(n)$ is the number of $k$-tuples of positive integers all less than or equal
 \sum_{\delta|n}\varphi(\delta)d\left(\frac{n}{\delta}\right) = \sigma(n),&\ \sum_{\delta|n}\left| \mu(\delta) \right| = 2^{\omega(n)} \\
 \sum_{\delta|n}2^{\omega(\delta)} = d(n^2),&\ \sum_{\delta|n}d(\delta^2) = d^2(n) \\
 \sum_{\delta|n}d\left(\frac{n}{\delta}\right)2^{\omega(\delta)} = d^2(n),&\ \sum_{\delta|n}\frac{\mu(\delta)}{\delta} = \frac{\varphi(n)}{n} \\
-\sum_{\delta|n}\frac{\mu(\delta)}{\varphi(\delta)} = d(n),&\ \sum_{\delta|n}\frac{\mu^2(\delta)}{\varphi(\delta)} = \frac{n}{\varphi(n)} \\
+\sum_{\delta|n}\mu(\delta) = [n=1],&\ \sum_{\delta|n}\frac{\mu^2(\delta)}{\varphi(\delta)} = \frac{n}{\varphi(n)} \\
 \end{align*}
 \[ n|\varphi(a^n-1) \]
 \[ \sum_{\substack{1 \leq k \leq n \\ \gcd(k, n) = 1}}f(\gcd(k-1, n)) = \varphi(n)
@@ -159,7 +159,7 @@ $$\frac {L_n + F_n \sqrt 5} 2 = \left( \frac {1 + \sqrt 5} 2 \right) ^ n$$
 \[ c(x)=\frac{1-\sqrt{1-4x}}{2x}\]
 Usage: $n$对括号序列; $n$个点满二叉树; $n\times n$的方格左下到右上不过对角线方案数; 凸$n+2$边形三角形分割数; $n$个数的出栈方案数; $2n$个顶点连接, 线段两两不交的方案数.
 \paragraph*{类卡特兰数}
-从 $(1,1)$ 出发走到 $(n,m)$,只能向右或者向上走,不能越过 $y=x$ 这条线(即保证 $x\geq y$ ),合法方案数是 $C_{n+m-2}^{n} - C_{n+m-2}^{n-1}$.
+从 $(1,1)$ 出发走到 $(n,m)$,只能向右或者向上走,不能越过 $y=x$ 这条线(即保证 $x\geq y$ ),合法方案数是 $\frac{n-m+1}{n}\binom{n+m-2}{m-1}$ ($n\ge m\ge 1$).
 \subsubsection{Motzkin Numbers 1, 1, 2, 4, 9, 21, 51, 127, 323, 835\dots}
 圆上$n$点间画不相交弦的方案数. 选$n$个数$k_1,k_2,...,k_n\in\{-1,0,1\}$, 保证$\sum_i^ak_i(1\leq a\leq n)$非负且所有数总和为$0$的方案数. \[M_{n+1}=M_n+\sum_i^{n-1}M_iM_{n-1-i}=\frac{(2n+3)M_n+3nM_{n-1}}{n+3}\]
 \[M_n=\sum_{i=0}^{\lfloor \frac{n}{2}\rfloor}\binom{n}{2k} \mathrm{Catlan}(k)\]
@@ -210,7 +210,7 @@ $$\begin{aligned}
 For fixed $k$, EGF:
 
 $$\begin{aligned}
-	\sum_{n = 0} ^ \infty {n \brack k} \frac {x ^ n} {n!} &= \frac {x ^ k} {k!} \left( \frac {\ln (1 - x)} x \right) ^ k
+	\sum_{n = 0} ^ \infty {n \brack k} \frac {x ^ n} {n!} &= \frac {x ^ k} {k!} \left( \frac {-\ln (1 - x)} x \right) ^ k
 \end{aligned}$$
 \end{multicols*}
 

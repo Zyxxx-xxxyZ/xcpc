@@ -4,6 +4,8 @@ void SORT(int a[], int c[], int n, int w) {
 	for(int i=1; i<=n; i++) b[(a[i]>>w) & (SZ-1)]++;
 	for(int i=1; i<SZ; i++) b[i] += b[i - 1];
 	for(int i=n; i; i--) c[b[(a[i]>>w) & (SZ-1)]--] = a[i];}
-void Sort(int *a, int n){
+void Sort(int *a, int n){ // signed int, 从小到大
+	for(int i=1;i<=n;i++) a[i] ^= 1u<<31;
 	SORT(a, c, n, 0); SORT(c, a, n, 8);
-	SORT(a, c, n, 16); SORT(c, a, n, 24); }
+	SORT(a, c, n, 16); SORT(c, a, n, 24);
+	for(int i=1;i<=n;i++) a[i] ^= 1u<<31; }

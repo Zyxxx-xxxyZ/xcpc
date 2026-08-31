@@ -12,7 +12,7 @@ struct linear_recurrence { poly f; // f是预处理结果
 		ntt_init(ntt_n); // 图省事就直接 ntt_init(1 << 18)
 		poly t(m + 1); t[m] = 1;
 		for (int i = 0; i < m; i++)t[i] = (p - c[m - i]) % p;
-		f = poly_power_mod(n, t); }
+		f = poly_power_mod(n, t); f.resize(m, 0); }
 	int operator()(const vector<int>& a) { // 0~m-1项初始值
 		assert(a.size() == f.size()); int ans = 0;
 		for (int i = 0; i < (int)a.size(); i++)

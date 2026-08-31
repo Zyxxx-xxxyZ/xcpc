@@ -18,7 +18,7 @@ bool bipolar_orientation(int s, int t){
 	e[s].push_back(t), e[t].push_back(s);
 	stp = fail = 0, dfs(s, s, s, t);
 	for (int i = 1; i <= n; i++)
-		if (i != s && (!dfn[i] || low[i] >= dfn[i]))
+		if (i != s && i != t && (!dfn[i] || low[i] >= dfn[i]))
 			fail = true;
 	if (fail) return false;
 	sign[s] = 0;//memset sign[] is not necessary

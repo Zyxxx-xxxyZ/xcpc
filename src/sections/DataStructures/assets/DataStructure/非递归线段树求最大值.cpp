@@ -1,3 +1,4 @@
+// t,mark 开 2*M+5；M=2^k 且 M>=n+2
 void update(int l, int r, int d) {
 	for (l += M-1, r += M+1; l^r^1; l >>= 1, r >>= 1) {
 		if (l < M) {

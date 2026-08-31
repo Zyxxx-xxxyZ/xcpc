@@ -30,6 +30,7 @@ jobs:
           name: xcpc-handbook
           path: src/main.pdf
 
+  # tests/duipai 为本地暴力对拍，不在 CI 中编译或运行。
   cpp:
     name: C++ standards and warnings
     runs-on: ubuntu-latest

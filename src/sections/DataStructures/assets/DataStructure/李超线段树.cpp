@@ -4,7 +4,7 @@ namespace Li{ // 默认取max 可持久化李超记得从x转移而非p
 	const double EPS = 1e-10;
 	double calc(int i, double x) {return x * k[i] + b[i];}
 	void update(int nl, int nr, int l, int r, int p, int x){
-		if(l == r) {if(calc(tag[p], l) < calc(x, l)) tag[p] = x; return;}
+		if(l == r) {if(!tag[p] || calc(tag[p], l) < calc(x, l)) tag[p] = x; return;}
 		int mid = (l+r)>>1;
 		if(nl <= l && r <= nr){
 			if(!tag[p]) {tag[p] = x; return;}
@@ -21,9 +21,10 @@ namespace Li{ // 默认取max 可持久化李超记得从x转移而非p
 		if(nr > mid) update(nl, nr, mid+1, r, rs, x);
 	}
 	double query(int pos, int l, int r, int p){
-		if(l == r) return calc(tag[p], pos);
+		double cur = tag[p] ? calc(tag[p], pos) : -1e100;
+		if(l == r) return cur;
 		int mid = (l+r)>>1;
-		if(pos <= mid) return max(calc(tag[p], pos), query(pos, l, mid, ls));
-		else return max(calc(tag[p], pos), query(pos, mid+1, r, rs));
+		if(pos <= mid) return max(cur, query(pos, l, mid, ls));
+		else return max(cur, query(pos, mid+1, r, rs));
 	}
 }

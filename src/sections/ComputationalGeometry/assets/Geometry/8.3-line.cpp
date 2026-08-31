@@ -31,6 +31,7 @@ P ll_intersection(cl a, cl b) { // 两直线需不平行
 	return (b.s * s2 - b.t * s1) / (s2 - s1);
 }
 bool point_on_ray(cp a, cl b) {
+	if (b.s == b.t) return a == b.s;
 	return point_on_line(a, b) && sgn((a - b.s) * (b.t - b.s)) >= 0;
 }
 bool ray_intersection_judge(cl a, cl b) {

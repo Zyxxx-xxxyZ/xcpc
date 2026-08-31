@@ -5,6 +5,7 @@ void multiply(ll &c, ll &d, ll a, ll b, ll w) {
 	int cc = (a * c + b * d % MOD * w) % MOD;
 	int dd = (a * d + b * c) % MOD; c = cc, d = dd; }
 bool solve(int n, int &x) {
+	n %= MOD; if (n < 0) n += MOD;
 	if (n==0) return x=0,true; if (MOD==2) return x=1,true;
 	if (power(n, MOD / 2, MOD) == MOD - 1) return false;
 	ll c = 1, d = 0, b = 1, a, w;

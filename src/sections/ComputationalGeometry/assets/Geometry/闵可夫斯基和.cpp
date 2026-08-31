@@ -1,5 +1,8 @@
 vp minkowski_sum(vp a, vp b) {
-// size > 0, rotate(begin, min, end), 无重, 小于号 (y, x)
+// size > 0, rotate to min (y, x), 无重
+	auto yx = [](cp u, cp v) { return u.y != v.y ? u.y < v.y : u.x < v.x; };
+	if (!a.empty()) rotate(a.begin(), min_element(a.begin(), a.end(), yx), a.end());
+	if (!b.empty()) rotate(b.begin(), min_element(b.begin(), b.end(), yx), b.end());
 	if (a.size() == 1 || b.size() == 1) { 
 		vp ret;
 		for (auto i : a) for (auto j : b) ret.push_back(i+j);

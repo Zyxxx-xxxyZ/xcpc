@@ -1,5 +1,5 @@
 struct SAM{
-	int ch[MAXN<<1][26], f[MAXN<<1], len[MAXN<<1], tot = 1;
+	int ch[MAXN<<1][26]={}, f[MAXN<<1]={}, len[MAXN<<1]={}, tot = 1;
 	int ins(int c, int last){
 		c -= 'a';
 		int cur, p;
