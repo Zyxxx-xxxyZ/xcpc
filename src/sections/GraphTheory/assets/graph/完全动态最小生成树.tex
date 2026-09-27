@@ -1,0 +1,18 @@
+\subsubsection{完全动态最小生成树问题}
+\noindent
+给定原图和若干次对于边权的修改，要求求出每次修改之后最小生成树的权值。
+采用完全动态 MST (CDQ 分治 / Reduction \& Contraction)
+基于 CDQ 分治（或时间线段树分治）离线维护动态图最小生成树。核心思想是通过 **Reduction (减边)** 与 **Contraction (缩边)** 在分治递归过程中实时压缩图规模，使得递归到区间 $[l, r]$ 时，图的点数与边数均降低至 $O(r - l + 1)$ 级别。
+
+\paragraph{算法流程}
+对于当前分治区间 $[l, r]$：
+\begin{itemize}
+	\setlength{\itemsep}{0pt}
+	\setlength{\parskip}{0pt}
+	\setlength{\parsep}{0pt}
+	\item \textbf{标记变动边}：标记区间 $[l, r]$ 内包含修改或操作的边；其余未标记的边称为“不变边”。
+	\item \textbf{Reduction (减边/剔除无用边)}：将所有“不变边”按边权升序尝试连通。若加入前两端已连通，说明该边在区间 $[l, r]$ 内任何时刻都不可能属于 MST，可直接剔除。
+	\item \textbf{Contraction (缩边/合并必须边)}：假定所有“变动边”均已连通，再将“不变边”按权值升序连通。若某“不变边”连通了不同分量，说明该边在区间 $[l, r]$ 内必定属于 MST，利用可撤销并查集将两端点缩点合并。
+	\item \textbf{分治递归}：缩小图规模后，分别递归处理左右子区间 $[l, mid]$ 与 $[mid+1, r]$；当递归至 $l = r$ 时直接计算当前操作/询问的答案，并在回溯时回滚并查集状态。
+\end{itemize}
+

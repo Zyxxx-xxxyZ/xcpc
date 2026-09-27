@@ -8,8 +8,8 @@ int get(int&s,int&t){
 		fr(j,1,n)if(!g[j]&&!v[j])d[j]+=w[k][j];
 	}return an;}
 int mincut(int n,int w[N][N]){
-//n 为点数, w[i][j] 为 i 到 j 的流量, 返回无向图所有点对最小割之和 
-	int ans=0,i,j,s,t,x,y,z;
+//n 为点数, w[i][j] 为 i 到 j 的流量, 返回无向图全局最小割 
+	int ans=INF,i,j,s,t,x,y,z;
 	fr(i,1,n-1){
 		ans=min(ans,get(s,t));
 		g[t]=1;if(!ans)break;

@@ -1,9 +1,12 @@
 \section{图论}
 				\subsection{Hopcroft-Karp $O(\sqrt{V} E)$}
+					多源最广路 BFS 匹配，以及二分图最小点覆盖和边覆盖
 					\inputminted[highlightlines={5,9}]{cpp}{sections/GraphTheory/assets/graph/hk_skip2004.cpp}
 				\subsection{Hungarian $O(V E / w)$}
+					bitset 优化匈牙利算法，$w$ 为 bitset 的宽度
 					\inputminted{cpp}{sections/GraphTheory/assets/graph/Hungarian.cpp}
 				\subsection{Shuffle 一般图最大匹配 $O(V E)$}
+					不保证正确性
 					\inputminted{cpp}{sections/GraphTheory/assets/graph/一般图最大匹配-shuffle.cpp}
 				\subsection{极大团计数}
 					\inputminted{cpp}{sections/GraphTheory/assets/graph/CliqueCount.cpp}
@@ -14,7 +17,7 @@
 				\subsection{KM 最大权匹配 $O(V^3)$}
 					\inputminted{cpp}{sections/GraphTheory/assets/graph/KM.cpp}
 				\subsection{欧拉回路}
-				\inputminted{cpp}{sections/GraphTheory/assets/graph/欧拉回路.cpp}
+					\inputminted{cpp}{sections/GraphTheory/assets/graph/欧拉回路.cpp}
 				\subsection{Blossom 一般图最大匹配 $O(|V||E|)$}
 					\inputminted{cpp}{sections/GraphTheory/assets/graph/Blossom_Tree.cpp}
 				\subsection{2-SAT, 强连通分量 / Bitset Kosaraju}
@@ -26,31 +29,31 @@
 					\inputminted{cpp}{sections/GraphTheory/assets/graph/支配树.cpp}
 				\subsection{环计数}
 					\inputminted{cpp}{sections/GraphTheory/assets/graph/环计数.cpp}
-				%\subsection{最大团}
-				%\inputminted{cpp}{sections/GraphTheory/assets/graph/MaximumClique.cpp}
+				\subsection{最大团}
+					\inputminted{cpp}{sections/GraphTheory/assets/graph/MaximumClique.cpp}
 				\subsection{Dinic 最大流}
-					\input{sections/GraphTheory/assets/yzh/dinic_complexity.tex}
+					\input{sections/GraphTheory/assets/graph/dinic_complexity.tex}
 					\inputminted[highlightlines={8,30}]{cpp}{sections/GraphTheory/assets/graph/Dinic.cpp}
 				\subsection{原始对偶费用流}
 					\inputminted[highlightlines={50}]{cpp}{sections/GraphTheory/assets/graph/原始对偶费用流.cpp}
-				%\subsection{K短路}
-				%\inputminted{cpp}{sections/GraphTheory/assets/graph/K短路.cpp}
-				%\subsection{动态 MST}
-				%\inputminted{cpp}{sections/GraphTheory/assets/graph/完全动态MST.cpp}
+				\subsection{K短路}
+					\inputminted{cpp}{sections/GraphTheory/assets/graph/K短路.cpp}
+				\subsection{动态 MST}
+					\inputminted{cpp}{sections/GraphTheory/assets/graph/DynamicMST.cpp}
 				%\subsection{三元环}
 				%\inputminted{cpp}{sections/GraphTheory/assets/graph/三元环.cpp}
-				%\subsection{平面图转对偶图}
-				%\inputminted{cpp}{sections/GraphTheory/assets/graph/平面图转对偶图.cpp}
-				%\subsection{最小乘积生成树}
-				%\inputminted{cpp}{sections/GraphTheory/assets/graph/最小乘积生成树.cpp}
-\subsection{网络流总结}
-				\input{sections/GraphTheory/assets/tbr/网络流总结.tex}
+				\subsection{平面图转对偶图}
+					\inputminted{cpp}{sections/GraphTheory/assets/graph/平面图转对偶图.cpp}
+				\subsection{最小乘积生成树}
+					\inputminted{cpp}{sections/GraphTheory/assets/graph/最小乘积生成树.cpp}
+				\subsection{网络流总结}
+					\input{sections/GraphTheory/assets/graph/网络流总结.tex}
 				\subsection{Gomory-Hu 无向图最小割树\,$O(V ^ 3 E)$}
-					\input{sections/GraphTheory/assets/yzh/Gomory-Hu.tex}
+					\input{sections/GraphTheory/assets/graph/Gomory-Hu.tex}
 				\subsection{Stoer-Wagner\,无向图最小割\,$O(VE + V ^ 2 \log V)$}
-					\inputminted{cpp}{sections/GraphTheory/assets/yzh/Stoer-Wagner.cpp}
+					\inputminted{cpp}{sections/GraphTheory/assets/graph/Stoer-Wagner.cpp}
 				\subsection{弦图}
-					\input{sections/GraphTheory/assets/yzh/chordal-graph.tex}
+					\input{sections/GraphTheory/assets/graph/chordal-graph.tex}
 					\inputminted{cpp}{sections/GraphTheory/assets/graph/弦图.cpp}
 				\subsection{Minimum Mean Cycle 最小平均值环 $O(n^2)$}
 					\inputminted{cpp}{sections/GraphTheory/assets/graph/MeanCycle.cpp}
@@ -59,13 +62,14 @@
 				%\subsection{Cactus 仙人掌}
 					%\inputminted{cpp}{sections/GraphTheory/assets/graph/cactus.cpp}
 				\subsection{图论结论}
-					\input{sections/GraphTheory/assets/tbr/最小乘积问题.tex}
-					\input{sections/GraphTheory/assets/tbr/最小环问题.tex}
-					\input{sections/GraphTheory/assets/tbr/度序列的可图性.tex}
-					\input{sections/GraphTheory/assets/tbr/切比雪夫距离与曼哈顿距离互化.tex}
+					\input{sections/GraphTheory/assets/graph/最小乘积问题.tex}
+					\input{sections/GraphTheory/assets/graph/最小环问题.tex}
+					\input{sections/GraphTheory/assets/graph/度序列的可图性.tex}
+					\input{sections/GraphTheory/assets/graph/切比雪夫距离与曼哈顿距离互化.tex}
 					%\subsection{图论知识 - Nightfall}
 					\input{sections/GraphTheory/assets/graph/图论知识.tex}
-					\input{sections/GraphTheory/assets/tbr/拟阵交问题.tex}
+					\input{sections/GraphTheory/assets/graph/拟阵交问题.tex}
 					\subsubsection{双极定向}
-					\inputminted{cpp}{sections/GraphTheory/assets/tbr/bipolar_orientation.cpp}
+					\inputminted{cpp}{sections/GraphTheory/assets/graph/bipolar_orientation.cpp}
 					\input{sections/GraphTheory/assets/graph/shanghai19.tex}
+					\input{sections/GraphTheory/assets/graph/完全动态最小生成树.tex}

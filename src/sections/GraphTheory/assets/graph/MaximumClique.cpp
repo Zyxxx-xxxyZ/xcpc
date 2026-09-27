@@ -61,3 +61,5 @@ Maxclique(const BB *conn,const int sz,const float tt=.025)
 BB e[N]; int ans, sol[N]; for (...) e[x][y]=e[y][x]=true;
 Maxclique mc(e, n); mc.mcqdyn(sol, ans); // 全部0下标
 for (int i = 0; i < ans; ++i) cout << sol[i] << endl;
+// 0 -based,接临矩阵,双向建边
+// 执行 mc.mcqdyn(sol, ans);。计算完成后，ans 即为最大团大小，sol[0 ... ans-1] 即为最大团包含的点。
